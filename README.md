@@ -14,7 +14,7 @@
   <p>
     <a href="https://github.com/nlbs-labs/bnetlabs/releases">Releases</a>
     &nbsp;|&nbsp;
-    <a href="mailto:nafiurohman@nlbs.me">Contact</a>
+    <a href="mailto:nafiurohman@bezn.me">Contact</a>
   </p>
 </div>
 
@@ -167,8 +167,11 @@ BNetScale connects machines using WireGuard with a mesh topology:
 
 ## Contact
 
-- Email: [nafiurohman@nlbs.me](mailto:nafiurohman@nlbs.me)
+- Email: [nafiurohman@bezn.me](mailto:nafiurohman@bezn.me)
 - WhatsApp: [+62 813-5819-8565](https://wa.me/6281358198565)
+- Trakteer: [teer.id/nafiurohman](https://teer.id/nafiurohman)
+
+> **Experimental:** BNetScale is in active development. Features and APIs may change.
 
 ---
 
