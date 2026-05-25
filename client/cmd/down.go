@@ -7,6 +7,7 @@ import (
 )
 
 func Down(args []string) {
+	ensureRoot()
 	ifaceName := "bnetscale0"
 
 	cmds := [][]string{

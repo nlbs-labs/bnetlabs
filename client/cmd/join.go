@@ -11,6 +11,7 @@ import (
 )
 
 func Join(args []string) {
+	ensureRoot()
 	if len(args) < 1 {
 		fmt.Fprintln(os.Stderr, "Usage: bnetscale join <token> [--server <url>]")
 		os.Exit(1)

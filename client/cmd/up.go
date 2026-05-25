@@ -11,6 +11,7 @@ import (
 )
 
 func Up(args []string) {
+	ensureRoot()
 	if !config.ConfigExists() {
 		fmt.Fprintln(os.Stderr, "Not configured. Run 'bnetscale join <token>' first.")
 		os.Exit(1)

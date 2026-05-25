@@ -10,6 +10,7 @@ import (
 )
 
 func Status(args []string) {
+	ensureRoot()
 	if !config.ConfigExists() {
 		fmt.Println("Status: Not configured")
 		return
