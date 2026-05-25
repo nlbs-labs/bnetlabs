@@ -131,6 +131,18 @@ bnetscale up
 bnetscale status
 ```
 
+### Update CLI
+
+```bash
+curl -fsSL https://github.com/nlbs-labs/bnetlabs/raw/main/scripts/update.sh | sudo bash
+```
+
+### Uninstall
+
+```bash
+curl -fsSL https://github.com/nlbs-labs/bnetlabs/raw/main/scripts/uninstall.sh | sudo bash
+```
+
 ---
 
 ## Repository Structure
