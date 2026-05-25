@@ -3,7 +3,7 @@ set -euo pipefail
 
 REPO="nlbs-labs/bnetlabs"
 HOST="github.com"
-VERSION="${1:-0.1.5}"
+VERSION="${1:-0.1.6}"
 TAG="v${VERSION}"
 BINDIR="${BINDIR:-/usr/bin}"
 CONFIGDIR="${CONFIGDIR:-/etc/bnetscale}"

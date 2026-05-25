@@ -32,6 +32,8 @@ type ResponseRequest struct {
 	ChallengeResponse string `json:"challenge_response"`
 	ClientStaticPub   string `json:"client_static_pub"`
 	DeviceID          string `json:"device_id"`
+	Hostname          string `json:"hostname,omitempty"`
+	OS                string `json:"os,omitempty"`
 }
 
 type ServerConfirmation struct {

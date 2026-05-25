@@ -26,7 +26,7 @@ func main() {
 	case "status":
 		cmd.Status(args)
 	case "version", "-v", "--version":
-		fmt.Println("bnetscale v0.1.5")
+		fmt.Println("bnetscale v0.1.6")
 	case "help", "-h", "--help":
 		printUsage()
 	default:

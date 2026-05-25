@@ -8,12 +8,26 @@ import (
 	"encoding/hex"
 	"fmt"
 	"io"
+	"os"
+	"runtime"
 	"time"
 
 	"git.nafi-labs.tech/Labs/bnetscale/client/internal/api"
 	"golang.org/x/crypto/curve25519"
 	"golang.org/x/crypto/hkdf"
 )
+
+func hostname() string {
+	h, err := os.Hostname()
+	if err != nil {
+		return ""
+	}
+	return h
+}
+
+func osName() string {
+	return runtime.GOOS + "/" + runtime.GOARCH
+}
 
 const keySize = 32
 
@@ -77,6 +91,8 @@ func Execute(client *api.Client, serverURL, deviceID, token string) (*Result, er
 		ChallengeResponse: hex.EncodeToString(challengeResponse),
 		ClientStaticPub:   hex.EncodeToString(pub),
 		DeviceID:          deviceID,
+		Hostname:          hostname(),
+		OS:                osName(),
 	})
 	if err != nil {
 		return nil, fmt.Errorf("handshake response: %w", err)
