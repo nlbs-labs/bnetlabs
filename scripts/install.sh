@@ -43,6 +43,68 @@ echo -e "${CYAN}  ║   ${BOLD}BNetScale Client Installer v${VERSION}${NC}${CYAN
 echo -e "${CYAN}  ╚══════════════════════════════════════╝${NC}"
 echo ""
 
+# --- Detect package manager ---
+detect_pkg_manager() {
+  if command -v apt &>/dev/null; then
+    PKG_MANAGER="apt"
+    PKG_INSTALL="apt install -y -qq"
+    PKG_UPDATE="apt update -qq"
+  elif command -v dnf &>/dev/null; then
+    PKG_MANAGER="dnf"
+    PKG_INSTALL="dnf install -y -q"
+    PKG_UPDATE="dnf makecache -q"
+  elif command -v yum &>/dev/null; then
+    PKG_MANAGER="yum"
+    PKG_INSTALL="yum install -y -q"
+    PKG_UPDATE="yum makecache -q"
+  elif command -v pacman &>/dev/null; then
+    PKG_MANAGER="pacman"
+    PKG_INSTALL="pacman -S --noconfirm"
+    PKG_UPDATE="pacman -Sy"
+  elif command -v zypper &>/dev/null; then
+    PKG_MANAGER="zypper"
+    PKG_INSTALL="zypper install -y"
+    PKG_UPDATE="zypper refresh"
+  elif command -v apk &>/dev/null; then
+    PKG_MANAGER="apk"
+    PKG_INSTALL="apk add"
+    PKG_UPDATE="apk update"
+  elif command -v xbps-install &>/dev/null; then
+    PKG_MANAGER="xbps"
+    PKG_INSTALL="xbps-install -Sy"
+    PKG_UPDATE="xbps-install -S"
+  elif command -v eopkg &>/dev/null; then
+    PKG_MANAGER="eopkg"
+    PKG_INSTALL="eopkg install -y"
+    PKG_UPDATE="eopkg update-repo"
+  elif command -v emerge &>/dev/null; then
+    PKG_MANAGER="emerge"
+    PKG_INSTALL="emerge"
+    PKG_UPDATE="emerge --sync"
+  else
+    echo -e "${RED}  ✗ No supported package manager found.${NC}"
+    echo -e "${YELLOW}  ℹ Please install git and wireguard-tools manually, then re-run.${NC}"
+    exit 1
+  fi
+  ok "Detected package manager: ${PKG_MANAGER}"
+}
+
+# --- Map package names per distro ---
+pkg_name() {
+  local pkg=$1
+  case "$pkg" in
+    wireguard-tools)
+      case "$PKG_MANAGER" in
+        emerge) echo "net-wireless/wireguard-tools" ;;
+        *)      echo "wireguard-tools" ;;
+      esac
+      ;;
+    git)
+      echo "git"
+      ;;
+  esac
+}
+
 # --- Install Go if missing ---
 if ! command -v go &>/dev/null; then
   step "Installing Go 1.26.3..."
@@ -74,13 +136,22 @@ if [[ "$(echo "$GO_VER_NUM" | cut -d. -f1)" -lt 1 ]] || { [[ "$(echo "$GO_VER_NU
 fi
 
 # --- Install system deps ---
+detect_pkg_manager
+
 DEPS=""
 command -v git &>/dev/null || DEPS="$DEPS git"
 command -v wg &>/dev/null || DEPS="$DEPS wireguard-tools"
+
 if [ -n "$DEPS" ]; then
-  step "Installing system dependencies:$DEPS"
-  apt update -qq && apt install -y -qq $DEPS &
-  spinner $! "Installing$DEPS..."
+  step "Installing system dependencies:${DEPS}"
+  PKG_LIST=""
+  for d in $DEPS; do
+    PKG_LIST="$PKG_LIST $(pkg_name "$d")"
+  done
+  $PKG_UPDATE &
+  spinner $! "Updating package cache..."
+  $PKG_INSTALL $PKG_LIST &
+  spinner $! "Installing$PKG_LIST..."
   ok "System dependencies installed"
 else
   ok "git + wireguard-tools detected"

@@ -24,7 +24,88 @@
 
 ### Install the CLI
 
-**Linux / macOS:**
+**Universal (auto-detects distro):**
+
+```bash
+curl -fsSL https://github.com/nlbs-labs/bnetlabs/raw/main/scripts/install.sh | sudo bash
+```
+
+**Per-distro (manual steps):**
+
+<details>
+<summary><b>Debian / Ubuntu</b></summary>
+
+```bash
+sudo apt update
+sudo apt install -y git wireguard-tools
+curl -fsSL https://github.com/nlbs-labs/bnetlabs/raw/main/scripts/install.sh | sudo bash
+```
+</details>
+
+<details>
+<summary><b>Fedora</b></summary>
+
+```bash
+sudo dnf install -y git wireguard-tools
+curl -fsSL https://github.com/nlbs-labs/bnetlabs/raw/main/scripts/install.sh | sudo bash
+```
+</details>
+
+<details>
+<summary><b>Arch Linux</b></summary>
+
+```bash
+sudo pacman -Sy --noconfirm git wireguard-tools
+curl -fsSL https://github.com/nlbs-labs/bnetlabs/raw/main/scripts/install.sh | sudo bash
+```
+</details>
+
+<details>
+<summary><b>openSUSE</b></summary>
+
+```bash
+sudo zypper install -y git wireguard-tools
+curl -fsSL https://github.com/nlbs-labs/bnetlabs/raw/main/scripts/install.sh | sudo bash
+```
+</details>
+
+<details>
+<summary><b>Alpine Linux</b></summary>
+
+```bash
+sudo apk add git wireguard-tools
+curl -fsSL https://github.com/nlbs-labs/bnetlabs/raw/main/scripts/install.sh | sudo bash
+```
+</details>
+
+<details>
+<summary><b>Void Linux</b></summary>
+
+```bash
+sudo xbps-install -Sy git wireguard-tools
+curl -fsSL https://github.com/nlbs-labs/bnetlabs/raw/main/scripts/install.sh | sudo bash
+```
+</details>
+
+<details>
+<summary><b>Solus</b></summary>
+
+```bash
+sudo eopkg install -y git wireguard-tools
+curl -fsSL https://github.com/nlbs-labs/bnetlabs/raw/main/scripts/install.sh | sudo bash
+```
+</details>
+
+<details>
+<summary><b>Gentoo</b></summary>
+
+```bash
+sudo emerge --ask net-wireless/wireguard-tools dev-vcs/git
+curl -fsSL https://github.com/nlbs-labs/bnetlabs/raw/main/scripts/install.sh | sudo bash
+```
+</details>
+
+**macOS:**
 
 ```bash
 curl -fsSL https://github.com/nlbs-labs/bnetlabs/raw/main/scripts/install.sh | sudo bash
