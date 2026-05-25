@@ -1,7 +1,7 @@
 <div align="center">
   <h1>BNetScale</h1>
   <p>
-    <strong>Zero-Trust Mesh VPN Platform</strong>
+    <strong>Zero-Trust Mesh VPN Platform — v0.1.6</strong>
   </p>
   <p>
     Self-hosted mesh VPN built on WireGuard. Connect machines securely across the internet with peer-to-peer encrypted tunnels.
@@ -162,6 +162,19 @@ BNetScale connects machines using WireGuard with a mesh topology:
 - **Zero-trust authentication** via a 5-step cryptographic handshake (Curve25519 + HKDF)
 - **Peer-to-peer mesh** — traffic flows directly between devices, not through a central server
 - **Self-hosted** — full control over your data and infrastructure
+
+---
+
+## Testing Status
+
+| Platform | Install | Update | CLI |
+|---|---|---|---|
+| Ubuntu Desktop | Testing | Testing | Testing |
+| Ubuntu Server | Testing | Testing | Testing |
+| EndeavourOS (Arch) | Testing | Untested | Testing |
+| Windows | Untested | Untested | Untested |
+| macOS | Untested | Untested | Untested |
+| Debian/Fedora/openSUSE/Alpine/Void/Solus/Gentoo | Untested | Untested | Untested |
 
 ---
 
