@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO="Labs/bnetscale"
-HOST="git.nafi-labs.tech"
+REPO="nlbs-labs/bnetlabs"
+HOST="github.com"
 VERSION="${1:-0.1.5}"
 TAG="v${VERSION}"
 BINDIR="${BINDIR:-/usr/bin}"
